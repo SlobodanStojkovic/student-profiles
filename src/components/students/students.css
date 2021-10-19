@@ -1,0 +1,26 @@
+.students {
+    scroll-behavior: smooth;
+}
+
+.singleStudent {
+    display: flex;
+    border-bottom: 1px solid gray;
+}
+
+.studentInfo {
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+.profilePicture{
+    width: 15%;
+    height: 65%;
+    border-radius: 50%;
+    border: 1px solid gray;
+    margin: 3rem;
+}
+
+.studentEmail, .studentCompany, .studentSkill, .studentAverage {
+    padding-left: 2rem;
+}
+

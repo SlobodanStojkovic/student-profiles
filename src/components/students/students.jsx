@@ -13,16 +13,21 @@ export const Students = ({ students }) => {
                 :
                 (
                     students.map((student) => {
+
+                        let arr = student.grades;
+                        const averageGrade = () => arr.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / arr.length;
+
                         return (
-                            <div className="singleStudent">
-                                <h1>{`${student.firstName} ${student.lastName}`}</h1>
-                                <p>{`Email: ${student.email}`}</p>
-                                <p>{`Company: ${student.company}`}</p>
-                                <p>{`Skill: ${student.skill}`}</p>
-                                <p>{`Average: ${student.grades.map((grade) => {
-                                    let sum = 0; sum += parseInt(grade); console.log(sum)
-                                    return (sum / student.grades.length)
-                                })}`}</p>
+                            <div className="singleStudent" key={student.id}>
+                                <img src={student.pic} alt="Profile" className="profilePicture"/>
+                                <div className="studentInfo">
+                                    <h1 className="studentName">{`${student.firstName.toUpperCase()} ${student.lastName.toUpperCase()}`}</h1>
+                                    <p className="studentEmail">{`Email: ${student.email}`}</p>
+                                    <p className="studentCompany">{`Company: ${student.company}`}</p>
+                                    <p className="studentSkill">{`Skill: ${student.skill}`}</p>
+                                    <p className="studentAverage">{`Average: ${averageGrade().toFixed(2)}%`}
+                                    </p>
+                                </div>
                             </div>
                         )
                     })
