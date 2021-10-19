@@ -6,21 +6,27 @@ import { fetchStudents } from './services/fetchStudents';
 
 function App() {
 
-  
   const [students, setStudents] = useState([]);
+  const [filteredStudents, setFilteredStudents] = useState([]);
+
 
   useEffect(() => {
-      fetchStudents()
-          .then(data => {
-              setStudents(data)
-              console.log(students)
-          })
+    fetchStudents()
+      .then(data => {
+        setStudents(data)
+      })
   }, [])
+
+
+  useEffect(() => {
+    setFilteredStudents(students)
+  }, [students])
+
 
   return (
     <div className="App">
-      <Search />
-      <Students students={students}/>
+      <Search students={students} filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents} />
+      <Students filteredStudents={filteredStudents} />
     </div>
   );
 }
