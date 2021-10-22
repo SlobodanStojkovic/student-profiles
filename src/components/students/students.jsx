@@ -1,15 +1,17 @@
 import { TestScores } from "../testScores/testScores";
 import "./students.css";
 
-export const Students = ({ students, setStudents, searchQuery, filteredStudents, setFilteredStudents, newTag, setNewTag, searchTag, setSearchTag }) => {
+export const Students = ({ students, setStudents, searchQuery, filteredStudents, setFilteredStudents, searchTag, setSearchTag }) => {
+
+
 
     return (
         <div className="students">
             {
                 filteredStudents.map((student) => {
 
-                    let arr = student.grades;
-                    const averageGrade = () => arr.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / arr.length;
+                    let gradesArray = student.grades;
+                    const averageGrade = () => gradesArray.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / gradesArray.length;
 
                     return (
                         <>
@@ -23,10 +25,16 @@ export const Students = ({ students, setStudents, searchQuery, filteredStudents,
                                     <p className="studentAverage">
                                         {`Average: ${averageGrade().toFixed(2)}%`}
                                     </p>
-
                                 </div>
-                                <TestScores searchQuery={searchQuery} students={students} setStudents={setStudents} filteredStudents={filteredStudents} /* student={student} */ newTag={newTag} setNewTag={setNewTag} searchTag={searchTag} setSearchTag={setSearchTag} setFilteredStudents={setFilteredStudents}
-                                    key={student.id} {...student} />
+
+                                <TestScores
+                                    key={student.id}
+                                    searchQuery={searchQuery}
+                                    students={students} setStudents={setStudents}
+                                    filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents}
+                                    student={student} {...student}
+                                    searchTag={searchTag} setSearchTag={setSearchTag}
+                                />
 
                             </div>
                         </>

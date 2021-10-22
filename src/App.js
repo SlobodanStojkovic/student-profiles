@@ -3,14 +3,16 @@ import './App.css';
 import { Search } from './components/search/search';
 import { Students } from './components/students/students';
 import { fetchStudents } from './services/fetchStudents';
+import { Loading } from './components/loading/loading';
+
 
 function App() {
 
   const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [filteredStudents, setFilteredStudents] = useState([]);
-  const [newTag, setNewTag] = useState("");
-  const [searchTag, setSearchTag] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchTag, setSearchTag] = useState("");
 
 
   useEffect(() => {
@@ -26,16 +28,38 @@ function App() {
   }, [])
 
 
-
   useEffect(() => {
-    setFilteredStudents(students)
+    if (students.length > 0) {
+      setLoading(false)
+    }
   }, [students])
 
 
+  useEffect(() => {
+    setFilteredStudents(students)
+  }, [loading])
+
+
   return (
+
     <div className="App">
-      <Search students={students} setStudents={setStudents} searchQuery={searchQuery} setSearchQuery={setSearchQuery} students={students} filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents} />
-      <Students students={students} setStudents={setStudents} filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents} newTag={newTag} setNewTag={setNewTag} searchTag={searchTag} setSearchTag={setSearchTag} />
+
+      {loading ?
+        < Loading />
+        :
+        <>
+          <Search students={students} setStudents={setStudents}
+            searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+            filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents}
+          />
+
+          <Students
+            students={students} setStudents={setStudents}
+            filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents}
+            searchTag={searchTag} setSearchTag={setSearchTag}
+          />
+        </>
+      }
     </div>
   );
 }

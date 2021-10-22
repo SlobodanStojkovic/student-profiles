@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./testScores.css";
+import { Tags } from "../tags/tags";
 
-
-export const TestScores = ({students, searchQuery, setStudents, student, newTag, setNewTag, filteredStudents, setFilteredStudents, city, company, email, firstName, grades, id, lastName, pic, skill }) => {
+export const TestScores = ({ students, searchQuery, setStudents, student, filteredStudents, setFilteredStudents, searchTag, setSearchTag, city, company, email, firstName, grades, id, lastName, pic, skill }) => {
 
     const [showTestScores, setShowTestScores] = useState(false);
     const [tagArray, setTagArray] = useState([]);
+
+    let newTag = "";
 
     const addTag = () => {
         if (tagArray.includes(newTag)) return
@@ -20,7 +22,9 @@ export const TestScores = ({students, searchQuery, setStudents, student, newTag,
     }
 
     const studentTags = () => {
-        return students.map(student => (
+        const sTags = [...tagArray]
+
+        return filteredStudents.map(student => (
             student.id !== id ?
                 student
                 :
@@ -34,33 +38,20 @@ export const TestScores = ({students, searchQuery, setStudents, student, newTag,
                     lastName,
                     pic,
                     skill,
-                    tags: [...tagArray]
+                    tags: sTags
                 }
         ))
     }
 
     useEffect(() => {
-        setStudents(studentTags)
         setFilteredStudents(studentTags)
-    }, [searchQuery, tagArray])
+    }, [searchQuery, searchTag, tagArray])
 
-    console.log("STUDENTS", students)
+
 
     return (
-        <> {tagArray !== undefined ? (
-            <div className="tags">
-
-                {tagArray.map((tag) => {
-                    return <p className="tag"> {tag} </p>
-                })}
-
-            </div>
-        )
-            :
-            (
-                null
-            )
-        }
+        <>
+            <Tags tagArray={tagArray} />
             {
                 showTestScores ?
                     <div className="testScores">
@@ -79,7 +70,7 @@ export const TestScores = ({students, searchQuery, setStudents, student, newTag,
             }
             <button className="showHideButton" onClick={() => setShowTestScores(!showTestScores)}>{showTestScores ? "-" : "+"}</button>
 
-            <input className="tagInput" type="text" placeholder="Add a tag" onChange={(e) => setNewTag(e.target.value)} onKeyDown={handleKeyDown} />
+            <input className="tagInput" type="text" placeholder="Add a tag" onChange={(e) => newTag = e.target.value} onKeyDown={handleKeyDown} />
         </>
     )
 }
