@@ -8,14 +8,23 @@ function App() {
 
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
+  const [newTag, setNewTag] = useState("");
+  const [searchTag, setSearchTag] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
 
   useEffect(() => {
     fetchStudents()
       .then(data => {
-        setStudents(data)
+        setStudents(data.map((student) => {
+          return {
+            ...student,
+            tags: []
+          }
+        }))
       })
   }, [])
+
 
 
   useEffect(() => {
@@ -25,8 +34,8 @@ function App() {
 
   return (
     <div className="App">
-      <Search students={students} filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents} />
-      <Students filteredStudents={filteredStudents} />
+      <Search students={students} setStudents={setStudents} searchQuery={searchQuery} setSearchQuery={setSearchQuery} students={students} filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents} />
+      <Students students={students} setStudents={setStudents} filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents} newTag={newTag} setNewTag={setNewTag} searchTag={searchTag} setSearchTag={setSearchTag} />
     </div>
   );
 }

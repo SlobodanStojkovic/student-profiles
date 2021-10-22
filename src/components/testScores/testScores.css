@@ -1,6 +1,7 @@
 .testScores {
     padding-left: 2rem;
     grid-column: 2/4;
+    grid-row: 2/3;
     font-size: 1.2rem;
 }
 
@@ -15,4 +16,26 @@
     grid-row: 1/2;
     position: relative;
     top: 1rem;
+}
+
+.tags {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    grid-column: 2/4;
+    width: 100wh;
+}
+
+.tags p {
+    display: inline-block;
+}
+
+.tag {
+    background-color: gainsboro;
+    padding: 1rem;
+    margin: 0.3rem;
+    border-radius: 5%;
+}
+
+.testScores p {
+    margin: 0;
 }

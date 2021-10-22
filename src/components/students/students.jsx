@@ -1,7 +1,7 @@
 import { TestScores } from "../testScores/testScores";
 import "./students.css";
 
-export const Students = ({ filteredStudents }) => {
+export const Students = ({ students, setStudents, searchQuery, filteredStudents, setFilteredStudents, newTag, setNewTag, searchTag, setSearchTag }) => {
 
     return (
         <div className="students">
@@ -20,12 +20,15 @@ export const Students = ({ filteredStudents }) => {
                                     <p className="studentEmail">{`Email: ${student.email}`}</p>
                                     <p className="studentCompany">{`Company: ${student.company}`}</p>
                                     <p className="studentSkill">{`Skill: ${student.skill}`}</p>
-                                    <p className="studentAverage">{`Average: ${averageGrade().toFixed(2)}%`}
+                                    <p className="studentAverage">
+                                        {`Average: ${averageGrade().toFixed(2)}%`}
                                     </p>
+
                                 </div>
-                                <TestScores student={student} />
+                                <TestScores searchQuery={searchQuery} students={students} setStudents={setStudents} filteredStudents={filteredStudents} /* student={student} */ newTag={newTag} setNewTag={setNewTag} searchTag={searchTag} setSearchTag={setSearchTag} setFilteredStudents={setFilteredStudents}
+                                    key={student.id} {...student} />
+
                             </div>
-                            
                         </>
                     )
                 })
