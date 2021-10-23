@@ -1,6 +1,8 @@
-import "./tags.css";
+import { useEffect, useState } from "react/cjs/react.development";
+import "./Tags.css";
 
 export const Tags = ({ tagArray }) => {
+
     return (
         <>
             {tagArray !== undefined ? (

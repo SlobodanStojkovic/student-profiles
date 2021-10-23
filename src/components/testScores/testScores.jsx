@@ -1,57 +1,32 @@
-import { useEffect, useState } from "react";
-import "./testScores.css";
-import { Tags } from "../tags/tags";
+import { useState } from "react";
+import { Tags } from "../Tags/Tags";
+import "./TestScores.css";
 
-export const TestScores = ({ students, searchQuery, setStudents, student, filteredStudents, setFilteredStudents, searchTag, setSearchTag, city, company, email, firstName, grades, id, lastName, pic, skill }) => {
+export const TestScores = ({ student, tagArray, setTagArray, filteredStudents }) => {
 
     const [showTestScores, setShowTestScores] = useState(false);
-    const [tagArray, setTagArray] = useState([]);
 
     let newTag = "";
+
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault()
+            addTag()
+            e.target.value = "";
+        }
+    }
+
 
     const addTag = () => {
         if (tagArray.includes(newTag)) return
         setTagArray([...tagArray, newTag])
     }
 
-    const handleKeyDown = (e) => {
-        if (e.key === "Enter") {
-            addTag()
-            e.target.value = "";
-        }
-    }
-
-    const studentTags = () => {
-        const sTags = [...tagArray]
-
-        return filteredStudents.map(student => (
-            student.id !== id ?
-                student
-                :
-                {
-                    city,
-                    company,
-                    email,
-                    firstName,
-                    grades,
-                    id,
-                    lastName,
-                    pic,
-                    skill,
-                    tags: sTags
-                }
-        ))
-    }
-
-    useEffect(() => {
-        setFilteredStudents(studentTags)
-    }, [searchQuery, searchTag, tagArray])
-
-
 
     return (
         <>
-            <Tags tagArray={tagArray} />
+            <Tags tagArray={tagArray} filteredStudents={filteredStudents} />
             {
                 showTestScores ?
                     <div className="testScores">
@@ -68,6 +43,7 @@ export const TestScores = ({ students, searchQuery, setStudents, student, filter
                     :
                     null
             }
+
             <button className="showHideButton" onClick={() => setShowTestScores(!showTestScores)}>{showTestScores ? "-" : "+"}</button>
 
             <input className="tagInput" type="text" placeholder="Add a tag" onChange={(e) => newTag = e.target.value} onKeyDown={handleKeyDown} />

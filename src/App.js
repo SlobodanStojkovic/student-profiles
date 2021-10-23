@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import { Search } from './components/search/search';
-import { Students } from './components/students/students';
+import { Search } from './components/Search/Search';
+import { Students } from './components/Students/Students';
 import { fetchStudents } from './services/fetchStudents';
-import { Loading } from './components/loading/loading';
+import { Loading } from './components/Loading/Loading';
+import './App.css';
 
 
 function App() {
 
   const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchTag, setSearchTag] = useState("");
@@ -25,32 +24,22 @@ function App() {
           }
         }))
       })
-  }, [])
-
-
-  useEffect(() => {
-    if (students.length > 0) {
-      setLoading(false)
-    }
-  }, [students])
-
-
-  useEffect(() => {
     setFilteredStudents(students)
-  }, [loading])
+  }, [])
 
 
   return (
 
     <div className="App">
 
-      {loading ?
+      {students.length !== 25 ?
         < Loading />
         :
         <>
           <Search students={students} setStudents={setStudents}
             searchQuery={searchQuery} setSearchQuery={setSearchQuery}
             filteredStudents={filteredStudents} setFilteredStudents={setFilteredStudents}
+            searchTag={searchTag} setSearchTag={setSearchTag}
           />
 
           <Students

@@ -1,30 +1,22 @@
-import { useEffect, useState } from "react";
-import "./search.css";
+import { useEffect } from "react";
+import "./Search.css";
 
-export const Search = ({ searchQuery, setSearchQuery, students, filteredStudents, setFilteredStudents }) => {
+export const Search = ({ students, searchQuery, setSearchQuery, searchTag, setSearchTag, setFilteredStudents }) => {
 
-    const [tagSearchQuery, setTagSearchQuery] = useState("");
-
-    useEffect(() => {
-        const filtStudents = students.filter(student => {
-            return (`${student.firstName} ${student.lastName}`.toLowerCase().includes(searchQuery));
-        })
-        setFilteredStudents(filtStudents)
-    }, [searchQuery])
-
+    const searchFunction = () => students.filter(student => {
+        const filterByName = searchQuery.length === 0 || `${student.firstName} ${student.lastName}`.toLowerCase().includes(searchQuery);
+        const filterByTags = searchTag.length === 0 || student.tags.some(tag => tag.toLowerCase().includes(searchTag));
+        return filterByName && filterByTags
+    })
 
     useEffect(() => {
-        const filtByTags = students.filter(student => {
-            return student.tags.some(tag => tag.toLowerCase().includes(tagSearchQuery));
-        })
-        setFilteredStudents(filtByTags)
-    }, [tagSearchQuery])
-
+        setFilteredStudents(searchFunction())
+    }, [students, searchQuery, searchTag])
 
     return (
         <div>
             <input type="text" placeholder="Search by name" onChange={(event) => setSearchQuery(event.target.value.toLowerCase())} />
-            <input type="text" placeholder="Search by tag" onChange={(event) => setTagSearchQuery(event.target.value.toLowerCase())} />
+            <input type="text" placeholder="Search by tag" onChange={(event) => setSearchTag(event.target.value.toLowerCase())} />
         </div>
     )
 }
