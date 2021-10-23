@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react/cjs/react.development";
 import "./Tags.css";
 
-export const Tags = ({ tagArray }) => {
+export const Tags = ({ student }) => {
+
 
     return (
         <>
-            {tagArray !== undefined ? (
+            {student.tags.length > 0 ? (
                 <div className="tags">
-
-                    {tagArray.map((tag) => {
+                    {student.tags.map((tag) => {
                         return <p className="tag" key={tag}> {tag} </p>
                     })}
-
                 </div>
             )
                 :

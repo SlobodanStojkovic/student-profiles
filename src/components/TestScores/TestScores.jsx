@@ -26,7 +26,7 @@ export const TestScores = ({ student, tagArray, setTagArray, filteredStudents })
 
     return (
         <>
-            <Tags tagArray={tagArray} filteredStudents={filteredStudents} />
+            <Tags student={student} filteredStudents={filteredStudents} />
             {
                 showTestScores ?
                     <div className="testScores">

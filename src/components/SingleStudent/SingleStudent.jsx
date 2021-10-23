@@ -14,12 +14,11 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
     const studentTags = () => {
         const sTags = [...tagArray]
 
-        return students.map(person => (
+        return students.map(person => {
 
-            person.id !== id ?
-                person
-                :
-                {
+            if (person.id === id) {
+
+                return {
                     city,
                     company,
                     email,
@@ -31,12 +30,13 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
                     skill,
                     tags: sTags
                 }
-        ))
+            } else return person
+        })
     }
 
-    
+
     useEffect(() => {
-        setStudents(studentTags)
+        setStudents(studentTags())
     }, [tagArray])
 
 
