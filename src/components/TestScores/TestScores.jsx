@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tags } from "../Tags/Tags";
 import "./TestScores.css";
 
-export const TestScores = ({ student, tagArray, setTagArray, filteredStudents, newTag }) => {
+export const TestScores = ({ student, setTagArray, filteredStudents, newTag, setNewTag }) => {
 
     const [showTestScores, setShowTestScores] = useState(false);
 
@@ -51,7 +51,7 @@ export const TestScores = ({ student, tagArray, setTagArray, filteredStudents, n
 
             <button className="showHideButton" onClick={() => setShowTestScores(!showTestScores)}>{showTestScores ? "-" : "+"}</button>
 
-            <input className="tagInput" type="text" placeholder="Add a tag" onChange={(e) => newTag = e.target.value} onKeyDown={handleKeyDown} />
+            <input className="tagInput" type="text" placeholder="Add a tag" onChange={(e) => setNewTag(e.target.value)} onKeyDown={handleKeyDown} />
         </>
     )
 }

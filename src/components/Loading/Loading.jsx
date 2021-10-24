@@ -1,7 +1,8 @@
 import "./Loading.css";
+import loadingSpinner from "./assets/loadingSpinner.gif";
 
 export const Loading = () => {
     return (
-        <div>Loading</div>
+        <img className="loadingSpinner" src={loadingSpinner} alt="Loading" />
     )
 }
