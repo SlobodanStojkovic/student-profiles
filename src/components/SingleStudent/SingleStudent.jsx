@@ -3,20 +3,21 @@ import { useEffect } from "react/cjs/react.development";
 import { TestScores } from "../TestScores/TestScores";
 import "./SingleStudent.css";
 
-export const SingleStudent = ({ students, setStudents, student, filteredStudents, city, company, email, firstName, grades, id, lastName, pic, skill }) => {
+export const SingleStudent = ({ students, setStudents, student, filteredStudents, city, company, email, firstName, grades, id, lastName, pic, skill, tags }) => {
 
     const [tagArray, setTagArray] = useState([]);
+    let newTag = "adas";
 
     let gradesArray = student.grades;
     const averageGrade = () => gradesArray.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / gradesArray.length;
 
 
     const studentTags = () => {
-        const sTags = [...tagArray]
 
         return students.map(person => {
 
             if (person.id === id) {
+                console.log(tags)
 
                 return {
                     city,
@@ -28,11 +29,12 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
                     lastName,
                     pic,
                     skill,
-                    tags: sTags
+                    tags: [...tags, newTag]
                 }
             } else return person
         })
     }
+
 
 
     useEffect(() => {
@@ -58,6 +60,7 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
                 tagArray={tagArray}
                 setTagArray={setTagArray}
                 filteredStudents={filteredStudents}
+                newTag={newTag}
             />
         </>
     )

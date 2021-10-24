@@ -2,12 +2,9 @@ import { useState } from "react";
 import { Tags } from "../Tags/Tags";
 import "./TestScores.css";
 
-export const TestScores = ({ student, tagArray, setTagArray, filteredStudents }) => {
+export const TestScores = ({ student, tagArray, setTagArray, filteredStudents, newTag }) => {
 
     const [showTestScores, setShowTestScores] = useState(false);
-
-    let newTag = "";
-
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
@@ -19,8 +16,16 @@ export const TestScores = ({ student, tagArray, setTagArray, filteredStudents })
 
 
     const addTag = () => {
-        if (tagArray.includes(newTag)) return
-        setTagArray([...tagArray, newTag])
+        if (newTag === undefined) {
+            return
+        }
+        else if (newTag.length === 0) {
+            return
+        }
+        else if (student.tags.includes(newTag)) {
+            return
+        } else
+            setTagArray([...student.tags, newTag])
     }
 
 

@@ -3,11 +3,23 @@ import "./Search.css";
 
 export const Search = ({ students, searchQuery, setSearchQuery, searchTag, setSearchTag, setFilteredStudents }) => {
 
+
     const searchFunction = () => students.filter(student => {
-        const filterByName = searchQuery.length === 0 || `${student.firstName} ${student.lastName}`.toLowerCase().includes(searchQuery);
-        const filterByTags = searchTag.length === 0 || student.tags.some(tag => tag.toLowerCase().includes(searchTag));
-        return filterByName && filterByTags
+        const filterByName = () => {
+            if (searchQuery.length > 0) {
+                console.log((`${student.firstName} ${student.lastName}`).toLowerCase().includes(searchQuery))
+                return (`${student.firstName} ${student.lastName}`).toLowerCase().includes(searchQuery);
+            } else return true
+        }
+
+        const filterByTags = () => {
+            if (searchTag.length > 0) {
+                return student.tags.some(tag => tag.toLowerCase().includes(searchTag))
+            } else return true
+        }
+        return filterByName() && filterByTags();
     })
+
 
     useEffect(() => {
         setFilteredStudents(searchFunction())
