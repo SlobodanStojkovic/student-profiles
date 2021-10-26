@@ -7,23 +7,22 @@ export const Search = ({ students, searchQuery, setSearchQuery, searchTag, setSe
     const searchFunction = () => students.filter(student => {
         const filterByName = () => {
             if (searchQuery.length > 0) {
-                console.log((`${student.firstName} ${student.lastName}`).toLowerCase().includes(searchQuery))
                 return (`${student.firstName} ${student.lastName}`).toLowerCase().includes(searchQuery);
-            } else return true
-        }
+            } else return true;
+        };
 
         const filterByTags = () => {
             if (searchTag.length > 0) {
-                return student.tags.some(tag => tag.toLowerCase().includes(searchTag))
-            } else return true
-        }
+                return student.tags.some(tag => tag.toLowerCase().includes(searchTag));
+            } else return true;
+        };
         return filterByName() && filterByTags();
-    })
+    });
 
 
     useEffect(() => {
-        setFilteredStudents(searchFunction())
-    }, [students, searchQuery, searchTag])
+        setFilteredStudents(searchFunction());
+    }, [students, searchQuery, searchTag]);
 
     return (
         <div>

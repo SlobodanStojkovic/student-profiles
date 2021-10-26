@@ -34,16 +34,15 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
                     pic,
                     skill,
                     tags: sTags
-                }
-            } else return person
-        })
-    }
+                };
+            } else return person;
+        });
+    };
 
 
     useEffect(() => {
-        let tagsUpdate = studentTags();
-        setStudents(tagsUpdate);
-    }, [tagArray])
+        setStudents(studentTags());
+    }, [tagArray]);
 
 
     return (

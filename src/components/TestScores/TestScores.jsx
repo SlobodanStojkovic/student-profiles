@@ -8,25 +8,25 @@ export const TestScores = ({ student, setTagArray, filteredStudents, newTag, set
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
-            e.preventDefault()
-            addTag()
+            e.preventDefault();
+            addTag();
             e.target.value = "";
         }
-    }
+    };
 
 
     const addTag = () => {
         if (newTag === undefined) {
-            return
+            return;
         }
         else if (newTag.length === 0) {
-            return
+            return;
         }
         else if (student.tags.includes(newTag)) {
-            return
+            return;
         } else
-            setTagArray([...student.tags, newTag])
-    }
+            setTagArray([...student.tags, newTag]);
+    };
 
 
     return (
