@@ -1,17 +1,17 @@
 .tags {
-    margin-left: 2rem;
-    margin-top: 1rem;
-    grid-column: 2/4;
-    width: 100wh;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  grid-column: 2/4;
+  width: 100wh;
 }
 
 .tags p {
-    display: inline-block;
+  display: inline-block;
 }
 
 .tag {
-    background-color: gainsboro;
-    padding: 1rem;
-    margin: 0.3rem;
-    border-radius: 5%;
+  background-color: gainsboro;
+  padding: 1rem;
+  margin: 0.3rem;
+  border-radius: 5%;
 }

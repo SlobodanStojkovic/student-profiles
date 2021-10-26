@@ -14,12 +14,17 @@ function App() {
   const [searchTag, setSearchTag] = useState("");
 
 
+  const averageGrade = (gradesArray) =>
+    gradesArray.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) /
+    gradesArray.length;
+
   useEffect(() => {
     fetchStudents()
       .then(data => {
         setStudents(data.map((student) => {
           return {
             ...student,
+            average: averageGrade(student.grades).toFixed(2),
             tags: []
           }
         }))

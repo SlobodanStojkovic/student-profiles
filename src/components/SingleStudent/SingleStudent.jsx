@@ -3,69 +3,59 @@ import { useEffect } from "react/cjs/react.development";
 import { TestScores } from "../TestScores/TestScores";
 import "./SingleStudent.css";
 
+export const SingleStudent = ({
+  students,
+  setStudents,
+  student,
+  filteredStudents,
+}) => {
+  const [tagArray, setTagArray] = useState([]);
+  const [newTag, setNewTag] = useState("");
 
-export const SingleStudent = ({ students, setStudents, student, filteredStudents, city, company, email, firstName, grades, id, lastName, pic, skill, tags }) => {
+  const studentTags = () => {
+    let sTags = [...student.tags];
 
-    const [tagArray, setTagArray] = useState([]);
-    const [newTag, setNewTag] = useState("");
+    if (newTag !== "") {
+      sTags = [...student.tags, newTag];
+    }
 
-    let gradesArray = student.grades;
-    const averageGrade = () => gradesArray.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / gradesArray.length;
+    return students.map((person) => {
+      if (person.id === student.id) {
+        return {
+          ...person,
+          tags: sTags,
+        };
+      } else return person;
+    });
+  };
 
+  useEffect(() => {
+    setStudents(studentTags());
+  }, [tagArray]);
 
-    const studentTags = () => {
-        let sTags = [...tags];
+  return (
+    <>
+      <img src={student.pic} alt="Profile" className="profilePicture" />
+      <div className="studentInfo">
+        <h1 className="studentName">
+          {`${student.firstName.toUpperCase()} ${student.lastName.toUpperCase()}`}{" "}
+        </h1>
+        <p className="studentEmail">{`Email: ${student.email}`}</p>
+        <p className="studentCompany">{`Company: ${student.company}`}</p>
+        <p className="studentSkill">{`Skill: ${student.skill}`}</p>
+        <p className="studentAverage">
+          {`Average: ${student.average}%`}
+        </p>
+      </div>
 
-        if (newTag !== "") {
-            sTags = [...tags, newTag];
-        }
-
-        return students.map(person => {
-
-            if (person.id === id) {
-                return {
-                    city,
-                    company,
-                    email,
-                    firstName,
-                    grades,
-                    id,
-                    lastName,
-                    pic,
-                    skill,
-                    tags: sTags
-                };
-            } else return person;
-        });
-    };
-
-
-    useEffect(() => {
-        /* setStudents(studentTags()); */
-        console.log("commented")
-    }, [tagArray]);
-
-
-    return (
-        <>
-            <img src={student.pic} alt="Profile" className="profilePicture" />
-            <div className="studentInfo">
-                <h1 className="studentName">{`${student.firstName.toUpperCase()} ${student.lastName.toUpperCase()}`} </h1>
-                <p className="studentEmail">{`Email: ${student.email}`}</p>
-                <p className="studentCompany">{`Company: ${student.company}`}</p>
-                <p className="studentSkill">{`Skill: ${student.skill}`}</p>
-                <p className="studentAverage">
-                    {`Average: ${averageGrade().toFixed(2)}%`}
-                </p>
-            </div>
-
-            <TestScores
-                student={student}
-                tagArray={tagArray}
-                setTagArray={setTagArray}
-                filteredStudents={filteredStudents}
-                newTag={newTag} setNewTag={setNewTag}
-            />
-        </>
-    )
-}
+      <TestScores
+        student={student}
+        tagArray={tagArray}
+        setTagArray={setTagArray}
+        filteredStudents={filteredStudents}
+        newTag={newTag}
+        setNewTag={setNewTag}
+      />
+    </>
+  );
+};
