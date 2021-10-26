@@ -41,7 +41,8 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
 
 
     useEffect(() => {
-        setStudents(studentTags());
+        /* setStudents(studentTags()); */
+        console.log("commented")
     }, [tagArray]);
 
 
