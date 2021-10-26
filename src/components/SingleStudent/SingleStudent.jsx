@@ -41,7 +41,8 @@ export const SingleStudent = ({ students, setStudents, student, filteredStudents
 
 
     useEffect(() => {
-        setStudents(studentTags())
+        let tagsUpdate = studentTags();
+        setStudents(tagsUpdate);
     }, [tagArray])
 
 
