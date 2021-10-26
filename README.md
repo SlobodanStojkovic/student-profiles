@@ -1,3 +1,11 @@
+You can see how this Web application works by clicking here >>> [student-profiles](https://slobodanstojkovic.github.io/student-profiles/)
+
+Student profiles is a single page app that fetches students data from API and allows you to add tags to each student, search students by full name or by tags that you have added. 
+
+Technologies used for creating this app are React.JS, JavaScript, HTML5, CSS3, AJAX.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
