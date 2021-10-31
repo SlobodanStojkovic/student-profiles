@@ -28,7 +28,7 @@ export const TestScores = ({
   return (
     <>
       <Tags student={student} filteredStudents={filteredStudents} />
-      {showTestScores ? (
+      {showTestScores && (
         <div className="testScores">
           <br />
           <p className="testScore">
@@ -56,7 +56,7 @@ export const TestScores = ({
             Test 8:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{`${student.grades[7]}%`}
           </p>
         </div>
-      ) : null}
+      )}
 
       <button
         className="showHideButton"
