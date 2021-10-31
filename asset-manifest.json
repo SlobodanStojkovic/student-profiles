@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/student-profiles/static/css/main.392930ea.chunk.css",
-    "main.js": "/student-profiles/static/js/main.0bb341e6.chunk.js",
-    "main.js.map": "/student-profiles/static/js/main.0bb341e6.chunk.js.map",
+    "main.js": "/student-profiles/static/js/main.ffbac84b.chunk.js",
+    "main.js.map": "/student-profiles/static/js/main.ffbac84b.chunk.js.map",
     "runtime-main.js": "/student-profiles/static/js/runtime-main.7156e56b.js",
     "runtime-main.js.map": "/student-profiles/static/js/runtime-main.7156e56b.js.map",
-    "static/js/2.fc50c00a.chunk.js": "/student-profiles/static/js/2.fc50c00a.chunk.js",
-    "static/js/2.fc50c00a.chunk.js.map": "/student-profiles/static/js/2.fc50c00a.chunk.js.map",
+    "static/js/2.8e45637d.chunk.js": "/student-profiles/static/js/2.8e45637d.chunk.js",
+    "static/js/2.8e45637d.chunk.js.map": "/student-profiles/static/js/2.8e45637d.chunk.js.map",
     "index.html": "/student-profiles/index.html",
     "static/css/main.392930ea.chunk.css.map": "/student-profiles/static/css/main.392930ea.chunk.css.map",
-    "static/js/2.fc50c00a.chunk.js.LICENSE.txt": "/student-profiles/static/js/2.fc50c00a.chunk.js.LICENSE.txt",
+    "static/js/2.8e45637d.chunk.js.LICENSE.txt": "/student-profiles/static/js/2.8e45637d.chunk.js.LICENSE.txt",
     "static/media/index.css": "/student-profiles/static/media/Raleway-VariableFont_wght.3fefe681.ttf",
     "static/media/loadingSpinner.8e48b48d.gif": "/student-profiles/static/media/loadingSpinner.8e48b48d.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.7156e56b.js",
-    "static/js/2.fc50c00a.chunk.js",
+    "static/js/2.8e45637d.chunk.js",
     "static/css/main.392930ea.chunk.css",
-    "static/js/main.0bb341e6.chunk.js"
+    "static/js/main.ffbac84b.chunk.js"
   ]
 }
